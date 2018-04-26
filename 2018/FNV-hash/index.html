@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="FNV-0,FNV-1,FNV-1a," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta name="keywords" content="统计、编程和其它">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一些技术笔记">
-<meta property="og:url" content="http://mathcying.github.io/index.html">
+<meta name="description" content="FNV 哈希算法是有 Glenn Flowler,Kiem-Phong Vo 和 Landon Curt Noij 共同提出和完善的一种计算哈希值的算法，算法以三位作者姓氏的首字母命名.  FNV 哈希算法有三种，分别是 FNV-0,FNV-1 和 FNV-1a，目前使用较多的是 FNV-1 和 FNV-1a. 根据需要和提供的参数不同，FNV 哈希算法的结果有32,64,128位等长度.  FN">
+<meta name="keywords" content="FNV-0,FNV-1,FNV-1a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FNV 哈希算法">
+<meta property="og:url" content="http://mathcying.github.io/2018/FNV-hash/index.html">
 <meta property="og:site_name" content="一些技术笔记">
+<meta property="og:description" content="FNV 哈希算法是有 Glenn Flowler,Kiem-Phong Vo 和 Landon Curt Noij 共同提出和完善的一种计算哈希值的算法，算法以三位作者姓氏的首字母命名.  FNV 哈希算法有三种，分别是 FNV-0,FNV-1 和 FNV-1a，目前使用较多的是 FNV-1 和 FNV-1a. 根据需要和提供的参数不同，FNV 哈希算法的结果有32,64,128位等长度.  FN">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-26T12:14:00.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一些技术笔记">
+<meta name="twitter:title" content="FNV 哈希算法">
+<meta name="twitter:description" content="FNV 哈希算法是有 Glenn Flowler,Kiem-Phong Vo 和 Landon Curt Noij 共同提出和完善的一种计算哈希值的算法，算法以三位作者姓氏的首字母命名.  FNV 哈希算法有三种，分别是 FNV-0,FNV-1 和 FNV-1a，目前使用较多的是 FNV-1 和 FNV-1a. 根据需要和提供的参数不同，FNV 哈希算法的结果有32,64,128位等长度.  FN">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://mathcying.github.io/"/>
+  <link rel="canonical" href="http://mathcying.github.io/2018/FNV-hash/"/>
 
 
 
 
 
-  <title>一些技术笔记</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>FNV 哈希算法 | 一些技术笔记</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -141,8 +145,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,9 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -247,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/FNV-hash/" itemprop="url">FNV 哈希算法</a></h1>
+          <h1 class="post-title" itemprop="name headline">FNV 哈希算法</h1>
         
 
         <div class="post-meta">
@@ -321,9 +322,7 @@
       
 
       
-        
-          
-            <p>FNV 哈希算法是有 Glenn Flowler,Kiem-Phong Vo 和 Landon Curt Noij 共同提出和完善的一种计算哈希值的算法，算法以三位作者姓氏的首字母命名. </p>
+        <p>FNV 哈希算法是有 Glenn Flowler,Kiem-Phong Vo 和 Landon Curt Noij 共同提出和完善的一种计算哈希值的算法，算法以三位作者姓氏的首字母命名. </p>
 <p>FNV 哈希算法有三种，分别是 FNV-0,FNV-1 和 FNV-1a，目前使用较多的是 FNV-1 和 FNV-1a. 根据需要和提供的参数不同，FNV 哈希算法的结果有32,64,128位等长度. </p>
 <h2 id="FNV-1"><a href="#FNV-1" class="headerlink" title="FNV-1"></a>FNV-1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fnv-1(data)</span><br><span class="line">    hash = offset_basis</span><br><span class="line">    for each byte of data</span><br><span class="line">        hash = hash * FNV_prime</span><br><span class="line">        hash = hash xor byte </span><br><span class="line">    return hash</span><br></pre></td></tr></table></figure>
 <p>哈希结果为 32 位时:</p>
@@ -340,8 +339,6 @@
 <p>FNV-1a 哈希算法和 FNV-1 哈希算法类似, 只是交换了乘法和异或操作的顺序. </p>
 <h2 id="FNV-0"><a href="#FNV-0" class="headerlink" title="FNV-0"></a>FNV-0</h2><p>将 FVN-1 哈希算法中的 offset_basis 设置为 0, 即为 FNV-0 哈希算法. </p>
 
-          
-        
       
     </div>
     
@@ -356,136 +353,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mathcying.github.io/2018/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Luo Zhong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一些技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/hello-world/" itemprop="url">好记性不如烂键盘</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T14:30:50+08:00">
-                2018-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/FNV-0/" rel="tag"># FNV-0</a>
           
-            
+            <a href="/tags/FNV-1/" rel="tag"># FNV-1</a>
           
-
+            <a href="/tags/FNV-1a/" rel="tag"># FNV-1a</a>
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。</p>
-<p>我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。</p>
-<p>为了让自己朝着技术专家的方向前进得更加稳健，决定建立这个网络日志，把一些技术笔记记录下来。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/hello-world/" rel="next" title="好记性不如烂键盘">
+                <i class="fa fa-chevron-left"></i> 好记性不如烂键盘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -495,10 +396,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -506,6 +408,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -526,8 +432,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -587,6 +502,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FNV-1"><span class="nav-number">1.</span> <span class="nav-text">FNV-1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FNV-1a"><span class="nav-number">2.</span> <span class="nav-text">FNV-1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FNV-0"><span class="nav-number">3.</span> <span class="nav-text">FNV-0</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -720,6 +651,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
