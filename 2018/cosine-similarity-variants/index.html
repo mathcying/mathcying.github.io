@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Cosine similarity,Term frequency,Inverse document frequency," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。 我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。 为了让自己朝着技术专家的方向前进得更加稳">
-<meta name="keywords" content="统计、编程和其它">
+<meta name="description" content="文章 “Text similarity: an alternative way to search MEDLINE”[1] 研究了包括余弦相似性在内的几个文本相似性计算方法在搜索 MEDLINE 医学文献数据库中的应用, 其中就计算余弦相似性的方法提出了几个变形, 下面我们一起来看一下. 标准方法 (TF1)给定文档 $D$ 以及用户输入的搜索查询 $Q$, 标准的余弦相似性计算方法按照如下步骤计">
+<meta name="keywords" content="Cosine similarity,Term frequency,Inverse document frequency">
 <meta property="og:type" content="article">
-<meta property="og:title" content="好记性不如烂键盘">
-<meta property="og:url" content="http://mathcying.github.io/2018/hello-world/index.html">
+<meta property="og:title" content="余弦相似性的变形">
+<meta property="og:url" content="http://mathcying.github.io/2018/cosine-similarity-variants/index.html">
 <meta property="og:site_name" content="一些技术笔记">
-<meta property="og:description" content="说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。 我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。 为了让自己朝着技术专家的方向前进得更加稳">
+<meta property="og:description" content="文章 “Text similarity: an alternative way to search MEDLINE”[1] 研究了包括余弦相似性在内的几个文本相似性计算方法在搜索 MEDLINE 医学文献数据库中的应用, 其中就计算余弦相似性的方法提出了几个变形, 下面我们一起来看一下. 标准方法 (TF1)给定文档 $D$ 以及用户输入的搜索查询 $Q$, 标准的余弦相似性计算方法按照如下步骤计">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-26T08:25:51.084Z">
+<meta property="og:updated_time" content="2018-04-27T08:43:59.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="好记性不如烂键盘">
-<meta name="twitter:description" content="说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。 我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。 为了让自己朝着技术专家的方向前进得更加稳">
+<meta name="twitter:title" content="余弦相似性的变形">
+<meta name="twitter:description" content="文章 “Text similarity: an alternative way to search MEDLINE”[1] 研究了包括余弦相似性在内的几个文本相似性计算方法在搜索 MEDLINE 医学文献数据库中的应用, 其中就计算余弦相似性的方法提出了几个变形, 下面我们一起来看一下. 标准方法 (TF1)给定文档 $D$ 以及用户输入的搜索查询 $Q$, 标准的余弦相似性计算方法按照如下步骤计">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://mathcying.github.io/2018/hello-world/"/>
+  <link rel="canonical" href="http://mathcying.github.io/2018/cosine-similarity-variants/"/>
 
 
 
 
 
-  <title>好记性不如烂键盘 | 一些技术笔记</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>余弦相似性的变形 | 一些技术笔记</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mathcying.github.io/2018/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://mathcying.github.io/2018/cosine-similarity-variants/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Luo Zhong">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">好记性不如烂键盘</h1>
+          <h1 class="post-title" itemprop="name headline">余弦相似性的变形</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T14:30:50+08:00">
-                2018-04-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T15:58:03+08:00">
+                2018-04-27
               </time>
             
 
@@ -272,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -300,9 +322,25 @@
       
 
       
-        <p>说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。</p>
-<p>我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。</p>
-<p>为了让自己朝着技术专家的方向前进得更加稳健，决定建立这个网络日志，把一些技术笔记记录下来。</p>
+        <p>文章 “Text similarity: an alternative way to search MEDLINE”[1] 研究了包括余弦相似性在内的几个文本相似性计算方法在搜索 MEDLINE 医学文献数据库中的应用, 其中就计算余弦相似性的方法提出了几个变形, 下面我们一起来看一下.</p>
+<h2 id="标准方法-TF1"><a href="#标准方法-TF1" class="headerlink" title="标准方法 (TF1)"></a>标准方法 (TF1)</h2><p>给定文档 $D$ 以及用户输入的搜索查询 $Q$, 标准的余弦相似性计算方法按照如下步骤计算 $D$ 和 $Q$ 之间的文本相似性:</p>
+<ol>
+<li>给定词汇表 $\Sigma$, 对于词汇表中的词 $\sigma_k$, 分别统计其在 $D$ 和 $Q$ 中出现的词频 (term frequency), 记为 $x_k$ 和 $y_k$;</li>
+<li>假设词汇表中包含的词汇数量为 $N$, 可以将 $D$ 和 $Q$ 分别表示为词频向量 $(x_1,x_2,\cdots,x_N)$ 和 $(y_1,y_2,\cdots,y_N)$;</li>
+<li>$D$ 和 $Q$ 的余弦相似性 $cos\_similarity(D,Q)=\frac{\sum_kx_ky_k}{\sqrt{\sum_kx_k^2\sum_ky_k^2}}$.</li>
+</ol>
+<h2 id="逆文档频数改进方法-TF1-IDF"><a href="#逆文档频数改进方法-TF1-IDF" class="headerlink" title="逆文档频数改进方法 (TF1*IDF)"></a>逆文档频数改进方法 (TF1*IDF)</h2><p>事实上, 在文档中, 并不是每个词的区分度都一样, 语料库中的词出现次数越少对文档的区分度越高, 因此有了逆文档频数 (inverse document frequency) 的概念. 对于给定的词, 其逆文档频数定义为</p>
+<script type="math/tex; mode=display">idf(\sigma_k) = \ln\frac{\mathrm{number\ of\ documents\ in\ the\ corpus}}{\mathrm{number\ of\ documents\ contain\ }\sigma_k}</script><p>改进之后, $D$ 和 $Q$ 的文本相似性为 $cos\_similarity\_tf1\_idf(D,Q)=\frac{\sum_kx_ky_kidf(\sigma_k)^2}{\sqrt{\sum_k(x_k\Sigma_k)^2\sum_k(y_k\sigma_k)^2}}$.</p>
+<p>改进的余弦相似性计算方法在信息检索领域的应用非常受欢迎, 已经成了事实的标准.</p>
+<h2 id="词频改进方法-TF2-IDF"><a href="#词频改进方法-TF2-IDF" class="headerlink" title="词频改进方法 (TF2*IDF)"></a>词频改进方法 (TF2*IDF)</h2><p>在 TF1 和 TF1*IDF 方法中, 都要统计词汇在文档中出现的次数, 因此出现比较频繁的词在计算相似性时具有较大的权重. 事实上, 对于出现超过一定次数 (比如5次) 的频繁词汇, 出现次数再增加, 权重增加也应该没有之前多. 基于这个考虑, 可以对词频记性改造, 改造方法如下:</p>
+<ul>
+<li>$x_i=\log_{1.6}\{\mathrm{number\ of\ occurences\ of\ }\sigma_k\ \mathrm{in}\ D\mathrm{\ or\ 0\ if\ }D\mathrm{\ does\ not\ contain\ }\sigma_k\}$</li>
+<li>$y_i=\log_{1.6}\{\mathrm{number\ of\ occurences\ of\ }\sigma_k\ \mathrm{in}\ Q\mathrm{\ or\ 0\ if\ }Q\mathrm{\ does\ not\ contain\ }\sigma_k\}$</li>
+</ul>
+<p>改造了词频之后使用 TF1*IDF 方法的计算公式即可得到 TF2*IDF 的余弦相似性. </p>
+<p>词频改造的目的是为了降低文档或者搜索查询中高频出现的词在计算余弦相似性时的权重, 因此也可以使用除 $\log$ 之外的其它增长缓慢的函数, 或者使用 $1.6$ 之外的其它对数的底.</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>根据作者在 MEDLINE 医学文献数据库上进行的实验, 最终评估效果为: TF2*IDF &gt; TF1*IDF &gt; TF1.</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Lewis, J., Ossowski, S., Hicks, J., Errami, M., &amp; Garner, H. R. (2006). Text similarity: an alternative way to search MEDLINE. Bioinformatics, 22(18), 2298-2304.</p>
 
       
     </div>
@@ -318,6 +356,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Cosine-similarity/" rel="tag"># Cosine similarity</a>
+          
+            <a href="/tags/Term-frequency/" rel="tag"># Term frequency</a>
+          
+            <a href="/tags/Inverse-document-frequency/" rel="tag"># Inverse document frequency</a>
+          
+        </div>
+      
 
       
       
@@ -327,15 +375,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/text-similarity-metrics/" rel="next" title="文本相似性度量">
+                <i class="fa fa-chevron-left"></i> 文本相似性度量
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/FNV-hash/" rel="prev" title="FNV 哈希算法">
-                FNV 哈希算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -387,8 +435,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准方法-TF1"><span class="nav-number">1.</span> <span class="nav-text">标准方法 (TF1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逆文档频数改进方法-TF1-IDF"><span class="nav-number">2.</span> <span class="nav-text">逆文档频数改进方法 (TF1*IDF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词频改进方法-TF2-IDF"><span class="nav-number">3.</span> <span class="nav-text">词频改进方法 (TF2*IDF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

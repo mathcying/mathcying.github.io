@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Text Similarity," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。 我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。 为了让自己朝着技术专家的方向前进得更加稳">
-<meta name="keywords" content="统计、编程和其它">
+<meta name="description" content="在搜索文档时, 有时用户需要查找和某个文档类似的文档, 例如: 医生查找相似病例, 律师查找相关案例等等. 为了更好地评价文档搜索结果, 需要对文档之间的相似性进行度量.  根据不同的理论基础, 可以将计算文档相似性的方法分为几大类[1]:   基于字符串的方法 (string based), 根据文档中字符序列和词汇的分布规律来计算文档相似性; 基于语料库的方法 (corpus based),">
+<meta name="keywords" content="Text Similarity">
 <meta property="og:type" content="article">
-<meta property="og:title" content="好记性不如烂键盘">
-<meta property="og:url" content="http://mathcying.github.io/2018/hello-world/index.html">
+<meta property="og:title" content="文本相似性度量">
+<meta property="og:url" content="http://mathcying.github.io/2018/text-similarity-metrics/index.html">
 <meta property="og:site_name" content="一些技术笔记">
-<meta property="og:description" content="说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。 我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。 为了让自己朝着技术专家的方向前进得更加稳">
+<meta property="og:description" content="在搜索文档时, 有时用户需要查找和某个文档类似的文档, 例如: 医生查找相似病例, 律师查找相关案例等等. 为了更好地评价文档搜索结果, 需要对文档之间的相似性进行度量.  根据不同的理论基础, 可以将计算文档相似性的方法分为几大类[1]:   基于字符串的方法 (string based), 根据文档中字符序列和词汇的分布规律来计算文档相似性; 基于语料库的方法 (corpus based),">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-26T08:25:51.084Z">
+<meta property="og:updated_time" content="2018-04-27T08:40:22.300Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="好记性不如烂键盘">
-<meta name="twitter:description" content="说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。 我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。 为了让自己朝着技术专家的方向前进得更加稳">
+<meta name="twitter:title" content="文本相似性度量">
+<meta name="twitter:description" content="在搜索文档时, 有时用户需要查找和某个文档类似的文档, 例如: 医生查找相似病例, 律师查找相关案例等等. 为了更好地评价文档搜索结果, 需要对文档之间的相似性进行度量.  根据不同的理论基础, 可以将计算文档相似性的方法分为几大类[1]:   基于字符串的方法 (string based), 根据文档中字符序列和词汇的分布规律来计算文档相似性; 基于语料库的方法 (corpus based),">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://mathcying.github.io/2018/hello-world/"/>
+  <link rel="canonical" href="http://mathcying.github.io/2018/text-similarity-metrics/"/>
 
 
 
 
 
-  <title>好记性不如烂键盘 | 一些技术笔记</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>文本相似性度量 | 一些技术笔记</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mathcying.github.io/2018/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://mathcying.github.io/2018/text-similarity-metrics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Luo Zhong">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">好记性不如烂键盘</h1>
+          <h1 class="post-title" itemprop="name headline">文本相似性度量</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T14:30:50+08:00">
-                2018-04-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T09:55:27+08:00">
+                2018-04-27
               </time>
             
 
@@ -272,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -300,9 +322,21 @@
       
 
       
-        <p>说实话，以前看书、论文以及技术资料都很少做笔记。依靠理解能力可以很好地掌握大量技术知识、依靠搜索引擎可以找到几乎所有技术知识的细节，这样基本能够帮助我很快地解决日常碰到的绝大部分技术问题。似乎不做笔记也能在技术行业立足。</p>
-<p>我渐渐地发现，不做技术笔记还是有一些弊端的，比如：相同的问题反复查找解决方法、难以形成系统的知识结构、无法准确了解自己的学习成长过程等。</p>
-<p>为了让自己朝着技术专家的方向前进得更加稳健，决定建立这个网络日志，把一些技术笔记记录下来。</p>
+        <p>在搜索文档时, 有时用户需要查找和某个文档类似的文档, 例如: 医生查找相似病例, 律师查找相关案例等等. 为了更好地评价文档搜索结果, 需要对文档之间的相似性进行度量. </p>
+<p>根据不同的理论基础, 可以将计算文档相似性的方法分为几大类[1]: </p>
+<ul>
+<li>基于字符串的方法 (string based), 根据文档中字符序列和词汇的分布规律来计算文档相似性;</li>
+<li>基于语料库的方法 (corpus based), 根据分析语料库和文档的语义来计算文档相似性：</li>
+<li>基于知识的方法 (knowledge based), 根据语义网络来计算文档相似性;</li>
+</ul>
+<p>基于字符串的方法是最简单, 最常用的方法, 本文主要介绍几种几种基于字符串的文档相似性度量计算方法.</p>
+<h2 id="Jaccard-相似性"><a href="#Jaccard-相似性" class="headerlink" title="Jaccard 相似性"></a>Jaccard 相似性</h2><p>文档 $D_1$ 和文档 $D_2$ 中出现的词汇集合分别为 $A$ 和 $B$, 则 $D_1$ 和 $D_2$ 的 Jaccard 相似性为</p>
+<script type="math/tex; mode=display">Jaccard\_similarity(D_1,D_2)=\frac{|A\cap B|}{|A\cup B|}</script><p>Jaccard 相似性的取值范围为 $[0,1]$, $0$ 表示两个文档的词汇集合没有交集, $1$ 表示两个文档的词汇集合相同. </p>
+<p>Jaccard 相似性计算简单高效, 但同时也是一个非常粗糙的文档相似性度量, 仅能应用于一些精度要求较低的场合.</p>
+<h2 id="余弦相似度"><a href="#余弦相似度" class="headerlink" title="余弦相似度"></a>余弦相似度</h2><p>文档 $D_1$ 和文档 $D_2$ 分词之后分别统计词汇表中每个词在两个文档中出现的频数, 将 $D_1$ 和 $D_2$ 的词汇频数记为向量 $(x_1,x_2,\cdots,x_N)$ 和 $(y_1,y_2,\cdots,y_N)$, 其中 $N$ 为词汇表中词汇的数目, $x_k,y_k$ 分别表示词汇表中的第 $k$ 个词在 $D_1$ 和 $D_2$ 中的频数. $D_1$ 和 $D_2$ 的余弦相似度为</p>
+<script type="math/tex; mode=display">cos\_similarity(D_1,D_2) = \frac{\sum\limits_{k=1}^Nx_ky_k}{\sqrt{\sum\limits_{k=1}^Nx_k^2\sum\limits_{k=1}^Ny_k^2}}</script><p>余弦相似度的取值范围为 $[0,1]$, $0$ 表示两个文档完全不相关, $1$ 表示完全相关, 数值越高文档之间的相关性越高.</p>
+<p>需要注意的, 余弦相似度是通过词在文档中出现的频数进行计算的, 它没有考虑词在文档中出现的顺序, 所以对文档的不同部分进行重排不影响文档之间的余弦相似度. 也可以使用字符频数或者字节频数计算余弦相似度.</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Gomaa, W. H., &amp; Fahmy, A. A. (2013). A survey of text similarity approaches. International Journal of Computer Applications, 68(13).</p>
 
       
     </div>
@@ -318,6 +352,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Text-Similarity/" rel="tag"># Text Similarity</a>
+          
+        </div>
+      
 
       
       
@@ -327,14 +367,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/FNV-hash/" rel="next" title="FNV 哈希算法">
+                <i class="fa fa-chevron-left"></i> FNV 哈希算法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/FNV-hash/" rel="prev" title="FNV 哈希算法">
-                FNV 哈希算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/cosine-similarity-variants/" rel="prev" title="余弦相似性的变形">
+                余弦相似性的变形 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -387,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,6 +501,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jaccard-相似性"><span class="nav-number">1.</span> <span class="nav-text">Jaccard 相似性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#余弦相似度"><span class="nav-number">2.</span> <span class="nav-text">余弦相似度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
